@@ -55,8 +55,18 @@ class DiaryEntry:
         else:
             if minutes == 0:
                 return 'You have no time to read anything.'
-            for i in range(int(minutes/wpm)):
-                outputtxt.append(self.words_to_read.pop(0))
+            #if int(minutes/wpm) > len(self.words_to_read):
+            #    outputtxt = self.words_to_read
+            #    self.words_to_read = []
+            else:
+                    
+                for i in range(int(minutes/wpm)):
+                    outputtxt.append(self.words_to_read.pop(0))
+                    if len(self.words_to_read)== 0:
+                        break
             if outputtxt[0] != list(self.title.split())[0]:
                     outputtxt[0] = '...' + outputtxt[0]
+            if len(self.words_to_read) == 0:
+                self.words_to_read = list(self.format().split())
+                return ' '.join(outputtxt)
             return ' '.join(outputtxt) + '...'

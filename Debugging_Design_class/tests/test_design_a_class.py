@@ -163,5 +163,31 @@ def test_multiple_calls_of_reading_chunk_returns_next_chunk():
     assert test_class.reading_chunk(1,3) == '...is some test...'
 
 '''
+Test that the system stops after reaching the end of the text.
+'''
+
+def test_reaching_end_of_text():
+    test_class = DiaryEntry('Test Title','This is some test contents.')
+    test_class.reading_chunk(1,3)
+    test_class.reading_chunk(1,3)
+    assert test_class.reading_chunk(1,1) == '...contents.'
 
 '''
+Test that if more words than are left are requested that the system doesn't have a shit fit.
+'''
+def test_reaching_end_of_text_with_additional_requests():
+    test_class = DiaryEntry('Test Title','This is some test contents.')
+    test_class.reading_chunk(1,3)
+    test_class.reading_chunk(1,3)
+    assert test_class.reading_chunk(1,3) == '...contents.'
+
+'''
+Test that reading chunk resets what is to read after reaching the end.
+'''
+
+def test_reading_chunk_resets():
+    test_class = DiaryEntry('Test Title','This is some test contents.')
+    test_class.reading_chunk(1,3)
+    test_class.reading_chunk(1,3)
+    test_class.reading_chunk(1,3)
+    assert test_class.reading_chunk(1,3) == 'Test Title: This...'
