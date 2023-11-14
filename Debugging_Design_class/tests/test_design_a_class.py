@@ -161,3 +161,7 @@ def test_multiple_calls_of_reading_chunk_returns_next_chunk():
     test_class = DiaryEntry('Test Title','This is some test contents.')
     assert test_class.reading_chunk(1,3) == 'Test Title: This...'
     assert test_class.reading_chunk(1,3) == '...is some test...'
+
+'''
+
+'''

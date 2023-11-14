@@ -57,4 +57,6 @@ class DiaryEntry:
                 return 'You have no time to read anything.'
             for i in range(int(minutes/wpm)):
                 outputtxt.append(self.words_to_read.pop(0))
+            if outputtxt[0] != list(self.title.split())[0]:
+                    outputtxt[0] = '...' + outputtxt[0]
             return ' '.join(outputtxt) + '...'
