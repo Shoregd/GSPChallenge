@@ -3,15 +3,18 @@ class Track:
     #   title: a string
     #   artist: a string
 
-    def __init__(self, title, artist):
+    def __init__(self, title= '', artist= ''):
         # Parameters:
         #   title: a string
         #   artist: a string
         # Side-effects:
         #   Sets the title and artist properties
-        pass
+        if len(title.strip()) == 0 or len(artist.strip()) == 0:
+            raise Exception('Title or artist is missing. Please try again.')
+        self.title = title
+        self.artist = artist
 
     def format(self):
         # Returns:
         #   a string in the format "TITLE by ARTIST"
-        pass
+        return f'{self.title} by {self.artist}'
